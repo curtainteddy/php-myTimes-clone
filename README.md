@@ -181,10 +181,12 @@ The project follows a structured file organization for easy navigation and maint
 myTimes/
 ├── assets/            # Contains CSS, JS, and images
 ├── includes/          # PHP files for database connections and functions
-├── pages/             # Contains user and admin pages (e.g., dashboard.php, profile.php)
+├── admin/             # Contains admin pages 
+├── user/              # Contains user pages
+├── index.php          # Main index page
 ├── register.php       # User registration page
 ├── login.php          # User login page
-├── functions.php      # Contains helper functions (e.g., image upload)
+├── logout.php         # Logout handler
 ├── create_db.sql      # SQL file for database setup
 ```
 ---
