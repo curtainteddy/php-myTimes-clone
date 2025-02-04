@@ -176,8 +176,8 @@ The **MyTimes Project** is a comprehensive learning management system designed
 
 The project follows a structured file organization for easy navigation and maintenance:
 
-Copy
 
+```
 myTimes/
 ├── assets/            # Contains CSS, JS, and images
 ├── includes/          # PHP files for database connections and functions
@@ -186,7 +186,7 @@ myTimes/
 ├── login.php          # User login page
 ├── functions.php      # Contains helper functions (e.g., image upload)
 ├── create_db.sql      # SQL file for database setup
-
+```
 ---
 
 ## Conclusion
