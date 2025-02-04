@@ -62,5 +62,6 @@ $users_result = $db->query($users_query);
             </table>
         </div>
     </div>
+    <?php include('../includes/footer.php'); ?>
 </body>
 </html>

@@ -109,5 +109,6 @@ $news_result = $db->query($news_query);
             </table>
         </div>
     </div>
+    <?php include('../includes/footer.php'); ?>
 </body>
 </html>

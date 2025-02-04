@@ -109,5 +109,6 @@ $notices_result = $db->query($notices_query);
             </table>
         </div>
     </div>
+    <?php include('../includes/footer.php'); ?>
 </body>
 </html>

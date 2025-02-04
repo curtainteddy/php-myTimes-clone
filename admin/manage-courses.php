@@ -109,5 +109,6 @@ $courses_result = $db->query($courses_query);
             </table>
         </div>
     </div>
+    <?php include('../includes/footer.php'); ?>
 </body>
 </html>

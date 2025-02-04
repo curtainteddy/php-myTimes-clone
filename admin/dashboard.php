@@ -180,5 +180,6 @@ $courses_count = $courses_result->fetch_assoc()['count'];
             </div>
         </div>
     </div>
+    <?php include('../includes/footer.php'); ?>
 </body>
 </html>
