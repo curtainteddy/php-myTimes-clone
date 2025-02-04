@@ -7,6 +7,7 @@ if (!isLoggedIn()) {
     exit();
 }
 
+// Get user data
 $user_id = $_SESSION['user_id'];
 $user_query = "SELECT * FROM users WHERE id = $user_id";
 $user_result = $db->query($user_query);
@@ -70,122 +71,130 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - MyTimes</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: #1a202c;
+            color: #68d391; /* Green color for text */
+            font-family: 'Arial', sans-serif;
+        }
+        .dark-container {
+            background: #2d3748; /* Dark theme for containers */
+            color: #68d391; /* Green color for text */
+        }
+        .dark-container .text-muted {
+            color: #a0aec0; /* Muted text color */
+        }
+        .dark-container .text-highlight {
+            color: #48bb78; /* Highlighted text color */
+        }
+        .dark-container .border-muted {
+            border-color: #4a5568; /* Muted border color */
+        }
+        .dark-container input {
+            background: #4a5568; /* Dark theme for input fields */
+            color: #68d391; /* Green color for text */
+        }
+        .dark-container button {
+            background: #68d391; /* Green color for button */
+            color: #1a202c; /* Dark color for button text */
+        }
+        .dark-container button:hover {
+            background: #48bb78; /* Darker green on hover */
+        }
+        .dark-container a {
+            color: #68d391; /* Green color for links */
+        }
+        .dark-container a:hover {
+            color: #48bb78; /* Darker green on hover */
+        }
+        .error-message {
+            background: #e53e3e; /* Red background for error message */
+            color: #fff; /* White text for error message */
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-<nav class="bg-white shadow-lg">
+<body>
+    <nav class="bg-gray-800 shadow-lg">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <div class="flex-shrink-0 flex items-center">
-                        <h1 class="text-xl font-bold">MyTimes</h1>
+                        <h1 class="text-xl font-bold text-green-500">MyTimes</h1>
                     </div>
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                        <a href="dashboard.php" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        <a href="dashboard.php" class="border-transparent text-gray-400 hover:border-gray-300 hover:text-gray-200 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Dashboard
                         </a>
-                        <a href="profile.php" class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                        <a href="profile.php" class="border-green-500 text-green-500 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Profile
                         </a>
                     </div>
                 </div>
                 <div class="flex items-center">
-                    <a href="../logout.php" class="text-gray-700 hover:text-gray-900">Logout</a>
+                    <a href="../logout.php" class="text-gray-400 hover:text-gray-200">Logout</a>
                 </div>
             </div>
         </div>
     </nav>
 
-<div class="min-h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 class="text-2xl font-bold mb-6 text-center">Profile</h2>
-        
-        <?php if (isset($error)): ?>
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                <?php echo $error; ?>
-            </div>
-        <?php endif; ?>
-        
-        <form method="POST" action="" enctype="multipart/form-data">
-            <div class="mb-4 text-center">
-                <?php if ($user['profile_picture']): ?>
-                    <img src="<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture" class="w-32 h-32 rounded-full mx-auto">
-                <?php else: ?>
-                    <img src="../assets/images/user.png" alt="Default User Icon" class="w-32 h-32 rounded-full mx-auto">
-                <?php endif; ?>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="full_name">
-                    Full Name
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                       type="text" name="full_name" value="<?php echo htmlspecialchars($user['full_name']); ?>" required>
-            </div>
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="dark-container p-8 rounded-lg shadow-md w-full max-w-4xl">
+            <h2 class="text-2xl font-bold mb-6 text-center">Profile</h2>
             
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-                    Email
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                       type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
-            </div>
+            <?php if (isset($error)): ?>
+                <div class="error-message border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                    <?php echo $error; ?>
+                </div>
+            <?php endif; ?>
             
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">
-                    Phone
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                       type="tel" name="phone" value="<?php echo htmlspecialchars($user['phone']); ?>" required>
-            </div>
-            
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="profile_picture">
-                    Profile Picture
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                       type="file" name="profile_picture">
-            </div>
-            
-            <div class="flex items-center justify-between">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="submit">
-                    Update Profile
-                </button>
-            </div>
-        </form>
-        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4"
-                onclick="openModal()">
-            Delete Account
-        </button>
-    </div>
-</div>
-
-<!-- Modal -->
-<div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 hidden">
-    <div class="bg-white p-6 rounded-lg shadow-lg">
-        <h2 class="text-xl font-bold mb-4">Confirm Delete</h2>
-        <p class="mb-4">Are you sure you want to delete your account? This action cannot be undone.</p>
-        <div class="flex justify-end">
-            <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mr-2" onclick="closeModal()">
-                Cancel
-            </button>
-            <form method="POST" action="">
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="submit" name="delete_account">
-                    Delete
-                </button>
+            <form method="POST" action="" enctype="multipart/form-data" class="flex flex-col md:flex-row">
+                <div class="mb-4 text-center md:w-1/3 md:mr-8">
+                    <div class="relative inline-block">
+                        <?php if ($user['profile_picture']): ?>
+                            <img src="<?php echo htmlspecialchars($user['profile_picture']); ?>" alt="Profile Picture" class="w-32 h-32 rounded-full mx-auto">
+                        <?php else: ?>
+                            <img src="../assets/images/user.png" alt="Default User Icon" class="w-32 h-32 rounded-full mx-auto">
+                        <?php endif; ?>
+                        <label for="profile_picture" class="block mt-2 bg-green-500 text-white rounded-full p-2 cursor-pointer">
+                            Edit Image
+                        </label>
+                        <input type="file" name="profile_picture" id="profile_picture" class="hidden">
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2" for="full_name">
+                            Full Name
+                        </label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                               type="text" name="full_name" value="<?php echo htmlspecialchars($user['full_name']); ?>" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2" for="email">
+                            Email
+                        </label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                               type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-sm font-bold mb-2" for="phone">
+                            Phone
+                        </label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                               type="text" name="phone" value="<?php echo htmlspecialchars($user['phone']); ?>" required>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <button class="font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                type="submit">
+                            Update Profile
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
-</div>
-
-<script>
-function openModal() {
-    document.getElementById('deleteModal').classList.remove('hidden');
-}
-
-function closeModal() {
-    document.getElementById('deleteModal').classList.add('hidden');
-}
-</script>
 </body>
 </html>
