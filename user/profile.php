@@ -191,10 +191,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 type="submit">
                             Update Profile
                         </button>
+                        <button class="font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline bg-red-500 text-white"
+                                type="button" onclick="showDeleteModal()">
+                            Delete Account
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+     <!-- Delete Confirmation Modal -->
+     <div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-gray-800 p-6 rounded shadow-lg text-green-500">
+            <h2 class="text-xl font-bold mb-4">Confirm Delete</h2>
+            <p class="mb-4">Are you sure you want to delete your account? This action cannot be undone.</p>
+            <div class="flex justify-end">
+                <button class="font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2 bg-gray-700 text-green-500"
+                        onclick="hideDeleteModal()">
+                    Cancel
+                </button>
+                <form method="post" action="">
+                    <button class="font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline bg-red-500 text-white"
+                            type="submit" name="delete_account">
+                        Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showDeleteModal() {
+            document.getElementById('deleteModal').classList.remove('hidden');
+        }
+
+        function hideDeleteModal() {
+            document.getElementById('deleteModal').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
