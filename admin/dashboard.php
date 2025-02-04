@@ -29,8 +29,6 @@ $courses_count = $courses_result->fetch_assoc()['count'];
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,19 +36,60 @@ $courses_count = $courses_result->fetch_assoc()['count'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - MyTimes</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: #1a202c;
+            color: #68d391; /* Green color for text */
+            font-family: 'Arial', sans-serif;
+        }
+        .dark-container {
+            background: #2d3748; /* Dark theme for containers */
+            color: #68d391; /* Green color for text */
+        }
+        .dark-container .text-muted {
+            color: #a0aec0; /* Muted text color */
+        }
+        .dark-container .text-highlight {
+            color: #48bb78; /* Highlighted text color */
+        }
+        .dark-container .border-muted {
+            border-color: #4a5568; /* Muted border color */
+        }
+        .dark-container input {
+            background: #4a5568; /* Dark theme for input fields */
+            color: #68d391; /* Green color for text */
+        }
+        .dark-container button {
+            background: #68d391; /* Green color for button */
+            color: #1a202c; /* Dark color for button text */
+        }
+        .dark-container button:hover {
+            background: #48bb78; /* Darker green on hover */
+        }
+        .dark-container a {
+            color: #68d391; /* Green color for links */
+        }
+        .dark-container a:hover {
+            color: #48bb78; /* Darker green on hover */
+        }
+        .error-message {
+            background: #e53e3e; /* Red background for error message */
+            color: #fff; /* White text for error message */
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
+<body>
     <div class="min-h-screen">
-        <nav class="bg-white shadow-lg">
+        <nav class="bg-gray-800 shadow-lg">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <div class="flex-shrink-0 flex items-center">
-                            <a href="dashboard.php" class="text-xl font-bold"> Admin Dashboard</a>
+                            <a href="dashboard.php" class="text-xl font-bold text-green-500"> Admin Dashboard</a>
                         </div>
                     </div>
                     <div class="flex items-center">
-                        <a href="../logout.php" class="text-gray-700 hover:text-gray-900">Logout</a>
+                        <a href="../logout.php" class="text-gray-400 hover:text-gray-200">Logout</a>
                     </div>
                 </div>
             </div>
@@ -59,7 +98,7 @@ $courses_count = $courses_result->fetch_assoc()['count'];
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Users Card -->
-                <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="dark-container overflow-hidden shadow rounded-lg">
                     <div class="px-4 py-5 sm:p-6">
                         <div class="flex items-center">
                             <div class="flex-shrink-0 bg-blue-500 rounded-md p-3">
@@ -69,19 +108,19 @@ $courses_count = $courses_result->fetch_assoc()['count'];
                             </div>
                             <div class="ml-5 w-0 flex-1">
                                 <dl>
-                                    <dt class="text-sm font-medium text-gray-500 truncate">
+                                    <dt class="text-sm font-medium text-muted truncate">
                                         Total Users
                                     </dt>
-                                    <dd class="text-3xl font-semibold text-gray-900">
+                                    <dd class="text-3xl font-semibold text-highlight">
                                         <?php echo $users_count; ?>
                                     </dd>
                                 </dl>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-gray-50 px-4 py-4 sm:px-6">
+                    <div class="bg-gray-700 px-4 py-4 sm:px-6">
                         <div class="text-sm">
-                            <a href="manage-users.php" class="font-medium text-blue-600 hover:text-blue-500">
+                            <a href="manage-users.php" class="font-medium text-green-600 hover:text-green-500">
                                 Manage Users
                             </a>
                         </div>
@@ -89,7 +128,7 @@ $courses_count = $courses_result->fetch_assoc()['count'];
                 </div>
 
                 <!-- News Card -->
-                <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="dark-container overflow-hidden shadow rounded-lg">
                     <div class="px-4 py-5 sm:p-6">
                         <div class="flex items-center">
                             <div class="flex-shrink-0 bg-green-500 rounded-md p-3">
@@ -99,17 +138,17 @@ $courses_count = $courses_result->fetch_assoc()['count'];
                             </div>
                             <div class="ml-5 w-0 flex-1">
                                 <dl>
-                                    <dt class="text-sm font-medium text-gray-500 truncate">
+                                    <dt class="text-sm font-medium text-muted truncate">
                                         Total News
                                     </dt>
-                                    <dd class="text-3xl font-semibold text-gray-900">
+                                    <dd class="text-3xl font-semibold text-highlight">
                                         <?php echo $news_count; ?>
                                     </dd>
                                 </dl>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-gray-50 px-4 py-4 sm:px-6">
+                    <div class="bg-gray-700 px-4 py-4 sm:px-6">
                         <div class="text-sm">
                             <a href="manage-news.php" class="font-medium text-green-600 hover:text-green-500">
                                 Manage News
@@ -119,27 +158,27 @@ $courses_count = $courses_result->fetch_assoc()['count'];
                 </div>
 
                 <!-- Courses Card -->
-                <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="dark-container overflow-hidden shadow rounded-lg">
                     <div class="px-4 py-5 sm:p-6">
                         <div class="flex items-center">
                             <div class="flex-shrink-0 bg-red-500 rounded-md p-3">
-                            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9M12 4h9M5 20h7M5 4h7M5 4v16M12 4v16" />
-                            </svg>
+                                <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9M12 4h9M5 20h7M5 4h7M5 4v16M12 4v16" />
+                                </svg>
                             </div>
                             <div class="ml-5 w-0 flex-1">
                                 <dl>
-                                    <dt class="text-sm font-medium text-gray-500 truncate">
+                                    <dt class="text-sm font-medium text-muted truncate">
                                         Total Courses
                                     </dt>
-                                    <dd class="text-3xl font-semibold text-gray-900">
+                                    <dd class="text-3xl font-semibold text-highlight">
                                         <?php echo $courses_count; ?>
                                     </dd>
                                 </dl>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-gray-50 px-4 py-4 sm:px-6">
+                    <div class="bg-gray-700 px-4 py-4 sm:px-6">
                         <div class="text-sm">
                             <a href="manage-courses.php" class="font-medium text-green-600 hover:text-green-500">
                                 Manage Courses
@@ -149,7 +188,7 @@ $courses_count = $courses_result->fetch_assoc()['count'];
                 </div>
 
                 <!-- Notices Card -->
-                <div class="bg-white overflow-hidden shadow rounded-lg">
+                <div class="dark-container overflow-hidden shadow rounded-lg">
                     <div class="px-4 py-5 sm:p-6">
                         <div class="flex items-center">
                             <div class="flex-shrink-0 bg-yellow-500 rounded-md p-3">
@@ -159,17 +198,17 @@ $courses_count = $courses_result->fetch_assoc()['count'];
                             </div>
                             <div class="ml-5 w-0 flex-1">
                                 <dl>
-                                    <dt class="text-sm font-medium text-gray-500 truncate">
+                                    <dt class="text-sm font-medium text-muted truncate">
                                         Total Notices
                                     </dt>
-                                    <dd class="text-3xl font-semibold text-gray-900">
+                                    <dd class="text-3xl font-semibold text-highlight">
                                         <?php echo $notices_count; ?>
                                     </dd>
                                 </dl>
                             </div>
                         </div>
                     </div>
-                    <div class="bg-gray-50 px-4 py-4 sm:px-6">
+                    <div class="bg-gray-700 px-4 py-4 sm:px-6">
                         <div class="text-sm">
                             <a href="manage-notices.php" class="font-medium text-yellow-600 hover:text-yellow-500">
                                 Manage Notices

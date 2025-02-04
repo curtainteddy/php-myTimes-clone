@@ -19,43 +19,84 @@ $users_result = $db->query($users_query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users - Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: #1a202c;
+            color: #68d391; /* Green color for text */
+            font-family: 'Arial', sans-serif;
+        }
+        .dark-container {
+            background: #2d3748; /* Dark theme for containers */
+            color: #68d391; /* Green color for text */
+        }
+        .dark-container .text-muted {
+            color: #a0aec0; /* Muted text color */
+        }
+        .dark-container .text-highlight {
+            color: #48bb78; /* Highlighted text color */
+        }
+        .dark-container .border-muted {
+            border-color: #4a5568; /* Muted border color */
+        }
+        .dark-container input {
+            background: #4a5568; /* Dark theme for input fields */
+            color: #68d391; /* Green color for text */
+        }
+        .dark-container button {
+            background: #68d391; /* Green color for button */
+            color: #1a202c; /* Dark color for button text */
+        }
+        .dark-container button:hover {
+            background: #48bb78; /* Darker green on hover */
+        }
+        .dark-container a {
+            color: #68d391; /* Green color for links */
+        }
+        .dark-container a:hover {
+            color: #48bb78; /* Darker green on hover */
+        }
+        .error-message {
+            background: #e53e3e; /* Red background for error message */
+            color: #fff; /* White text for error message */
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
+<body>
     <div class="min-h-screen">
-        <nav class="bg-white shadow-lg">
+        <nav class="bg-gray-800 shadow-lg">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <div class="flex-shrink-0 flex items-center">
-                        <a href="dashboard.php" class="text-xl font-bold"> Admin Dashboard</a>
+                            <a href="dashboard.php" class="text-xl font-bold text-green-500"> Admin Dashboard</a>
                         </div>
                     </div>
                     <div class="flex items-center">
-                        <a href="../logout.php" class="text-gray-700 hover:text-gray-900">Logout</a>
+                        <a href="../logout.php" class="text-gray-400 hover:text-gray-200">Logout</a>
                     </div>
                 </div>
             </div>
         </nav>
 
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold mb-6">Manage Users</h2>
+            <h2 class="text-2xl font-bold mb-6 text-green-500">Manage Users</h2>
 
-            <table class="min-w-full bg-white">
+            <table class="min-w-full bg-gray-700">
                 <thead>
                     <tr>
-                        <th class="py-2 px-4 border-b">Full Name</th>
-                        <th class="py-2 px-4 border-b">Email</th>
-                        <th class="py-2 px-4 border-b">Phone</th>
-                        <th class="py-2 px-4 border-b">Role</th>
+                        <th class="py-2 px-4 border-b border-muted">Full Name</th>
+                        <th class="py-2 px-4 border-b border-muted">Email</th>
+                        <th class="py-2 px-4 border-b border-muted">Phone</th>
+                        <th class="py-2 px-4 border-b border-muted">Role</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php while ($user = $users_result->fetch_assoc()): ?>
                         <tr>
-                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($user['full_name']); ?></td>
-                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($user['email']); ?></td>
-                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($user['phone']); ?></td>
-                            <td class="py-2 px-4 border-b"><?php echo htmlspecialchars($user['role']); ?></td>
+                            <td class="py-2 px-4 border-b border-muted"><?php echo htmlspecialchars($user['full_name']); ?></td>
+                            <td class="py-2 px-4 border-b border-muted"><?php echo htmlspecialchars($user['email']); ?></td>
+                            <td class="py-2 px-4 border-b border-muted"><?php echo htmlspecialchars($user['phone']); ?></td>
+                            <td class="py-2 px-4 border-b border-muted"><?php echo htmlspecialchars($user['role']); ?></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
