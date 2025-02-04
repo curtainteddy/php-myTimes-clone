@@ -40,7 +40,7 @@ $courses_result = $db->query($courses_query);
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <div class="flex-shrink-0 flex items-center">
-                            <h1 class="text-xl font-bold">Admin Dashboard</h1>
+                        <a href="dashboard.php" class="text-xl font-bold"> Admin Dashboard</a>
                         </div>
                     </div>
                     <div class="flex items-center">

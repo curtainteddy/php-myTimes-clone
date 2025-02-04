@@ -46,7 +46,7 @@ $courses_count = $courses_result->fetch_assoc()['count'];
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <div class="flex-shrink-0 flex items-center">
-                            <h1 class="text-xl font-bold">Admin Dashboard</h1>
+                            <a href="dashboard.php" class="text-xl font-bold"> Admin Dashboard</a>
                         </div>
                     </div>
                     <div class="flex items-center">
